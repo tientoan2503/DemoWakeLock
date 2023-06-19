@@ -23,7 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_set).setOnClickListener(v -> {
             long second = Long.parseLong(((EditText) findViewById(R.id.edt_second)).getText().toString()) * 1000;
-            new Handler().postDelayed(() -> wakeLock.acquire(), second);
+            new Handler().postDelayed(() -> {
+                wakeLock.acquire();
+                wakeLock.release();
+            }, second);
         });
     }
 }
